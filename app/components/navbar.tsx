@@ -17,7 +17,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Matches", href: "/matches" },
+    // { name: "Matches", href: "/matches" },
     { name: "Brackets", href: "/brackets" },
     { name: "Leaderboard", href: "/leaderboard" },
     { name: "Admin", href: "/admin" },
