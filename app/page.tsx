@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 // Animation Variants
 const fadeIn = {
@@ -21,6 +22,7 @@ const staggerContainer = {
   },
 };
 
+var link = { name: "Brackets", href: "/brackets" };
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-orange-500 selection:text-white">
@@ -95,9 +97,16 @@ export default function Home() {
               <div className="absolute inset-0 w-0 bg-white/20 transition-all duration-300 group-hover:w-full" />
               <span className="relative">REGISTER YOUR TEAM</span>
             </button>
-            <button className="px-10 py-4 border border-white/20 hover:bg-white/10 font-bold text-lg transition-all rounded-sm backdrop-blur-sm">
-              VIEW BRACKETS
-            </button>
+
+            <Link
+              key={link.name}
+              href={link.href}
+              className="text-sm font-bold uppercase tracking-widest text-gray-300"
+            >
+              <button className="px-10 py-4 border border-white/20 hover:bg-white/10 font-bold text-lg transition-all rounded-sm backdrop-blur-sm">
+                VIEW BRACKETS
+              </button>
+            </Link>
           </motion.div>
         </div>
       </section>
