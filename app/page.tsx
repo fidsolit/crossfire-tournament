@@ -22,7 +22,9 @@ const staggerContainer = {
   },
 };
 
-var link = { name: "Brackets", href: "/brackets" };
+// RENAMED AND CHANGED TO CONST TO AVOID BUILD ERRORS
+const BRACKET_LINK = { name: "Brackets", href: "/brackets" };
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-orange-500 selection:text-white">
@@ -91,21 +93,19 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             variants={fadeIn}
-            className="mt-12 flex flex-col md:flex-row gap-4 justify-center"
+            className="mt-12 flex flex-col md:flex-row gap-4 justify-center items-center"
           >
             <button className="group relative px-10 py-4 bg-orange-600 overflow-hidden font-bold text-lg transition-all rounded-sm">
               <div className="absolute inset-0 w-0 bg-white/20 transition-all duration-300 group-hover:w-full" />
               <span className="relative">REGISTER YOUR TEAM</span>
             </button>
 
+            {/* FIXED LINK COMPONENT STRUCTURE */}
             <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-bold uppercase tracking-widest text-gray-300"
+              href={BRACKET_LINK.href}
+              className="px-10 py-4 border border-white/20 hover:bg-white/10 font-bold text-lg transition-all rounded-sm backdrop-blur-sm uppercase tracking-widest text-gray-300"
             >
-              <button className="px-10 py-4 border border-white/20 hover:bg-white/10 font-bold text-lg transition-all rounded-sm backdrop-blur-sm">
-                VIEW BRACKETS
-              </button>
+              VIEW BRACKETS
             </Link>
           </motion.div>
         </div>
