@@ -265,13 +265,21 @@ export default function Home() {
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-orange-500 selection:text-white">
       {/* --- HERO SECTION --- */}
       <section className="relative h-[80vh] flex items-center justify-center overflow-hidden border-b border-orange-500/20">
-        <div className="absolute inset-0 z-0 opacity-40">
+        {/* <div className="absolute inset-0 z-0 opacity-40">
           <Image
-            src="/CROSSFIRE.jpg"
+            src="https://i.postimg.cc/Z5vG8655/CROSSFIRE.jpg"
             alt="Background"
             fill
             className="object-cover grayscale"
             priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+        </div> */}
+        <div className="absolute inset-0 z-0 opacity-40">
+          <img
+            src="https://i.postimg.cc/Z5vG8655/CROSSFIRE.jpg"
+            alt="Background"
+            className="w-full h-full object-cover grayscale"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
         </div>
