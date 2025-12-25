@@ -6,14 +6,17 @@ import Link from "next/link";
 
 // Use the Variants type to satisfy the index signature
 const fadeIn: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.1,
+      delay: i * 0.2,
       duration: 0.6,
-      ease: "easeOut", // TypeScript now knows this is a valid Easing value
+      ease: [0.16, 1, 0.3, 1], // ✅ easeOut equivalent
     },
   }),
 };
@@ -137,7 +140,8 @@ export default function Home() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={staggerContainer}
+          // variants={staggerContainer}
+
           className="grid md:grid-cols-3 gap-8"
         >
           {/* Card 1: Live Stream */}
