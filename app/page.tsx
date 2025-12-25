@@ -1,20 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 
-// Animation Variants
-const fadeIn = {
+// Use the Variants type to satisfy the index signature
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" },
+    transition: {
+      delay: i * 0.1,
+      duration: 0.6,
+      ease: "easeOut", // TypeScript now knows this is a valid Easing value
+    },
   }),
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -69,7 +73,7 @@ export default function Home() {
           >
             Crossfire <br />
             <span className="text-orange-600 drop-shadow-[0_0_15px_rgba(234,88,12,0.4)]">
-              Championship
+              Tournament
             </span>
           </motion.h1>
 
