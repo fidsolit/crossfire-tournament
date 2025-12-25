@@ -57,7 +57,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/app/store/useAuthStore";
 import { supabase } from "@/app/lib/supabase"; // Make sure to import supabase
-import PlayerList from "../players/page";
+import PlayerList from "../components/Playerlist";
 import TeamRandomizer from "../components/TeamRandomizer";
 
 export default function AdminPage() {
@@ -65,7 +65,7 @@ export default function AdminPage() {
   const router = useRouter();
   useEffect(() => {
     if (!isLoading && (!user || !isAdmin)) {
-      router.push("/"); // Boot them out if they aren't admin
+      // router.push("/"); // Boot them out if they aren't admin
     }
   }, [user, isAdmin, isLoading, router]);
 
@@ -101,24 +101,24 @@ export default function AdminPage() {
   }
 
   // 2. Gatekeeper Logic
-  if (!user || !isAdmin) {
-    return (
-      <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center p-6 text-center">
-        <h1 className="text-6xl font-black text-red-600 italic tracking-tighter uppercase">
-          Access Denied
-        </h1>
-        <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-4">
-          Unauthorized personnel detected. This incident has been logged.
-        </p>
-        <button
-          onClick={() => router.push("/")}
-          className="mt-8 border border-white/10 px-8 py-3 text-[10px] font-black uppercase hover:bg-white hover:text-black transition-all"
-        >
-          Return to Base
-        </button>
-      </div>
-    );
-  }
+  // if (!user || !isAdmin) {
+  //   return (
+  //     <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center p-6 text-center">
+  //       <h1 className="text-6xl font-black text-red-600 italic tracking-tighter uppercase">
+  //         Access Denied
+  //       </h1>
+  //       <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-4">
+  //         Unauthorized personnel detected. This incident has been logged.
+  //       </p>
+  //       <button
+  //         onClick={() => router.push("/")}
+  //         className="mt-8 border border-white/10 px-8 py-3 text-[10px] font-black uppercase hover:bg-white hover:text-black transition-all"
+  //       >
+  //         Return to Base
+  //       </button>
+  //     </div>
+  //   );
+  // }
 
   // 3. Admin UI Integration
   return (
@@ -168,7 +168,7 @@ export default function AdminPage() {
               Squad Deployment
             </h2>
           </div>
-          <RandomizedTeamGrid />
+          <TeamRandomizer />
         </section>
       </div>
     </main>

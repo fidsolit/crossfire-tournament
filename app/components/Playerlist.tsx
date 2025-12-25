@@ -3,17 +3,33 @@
 import { useEffect } from "react";
 import { usePlayerStore } from "@/app/store/usePlayerStore";
 
+// Local interface if not exported from your store
+interface Player {
+  id: string;
+  ign: string;
+  name: string;
+  registration_date: string;
+}
+
 export default function PlayerList() {
-  const { players, fetchPlayers, isLoading } = usePlayerStore();
+  // Specify the types coming from your store
+  const { players, fetchPlayers, isLoading } = usePlayerStore() as {
+    players: Player[];
+    fetchPlayers: () => Promise<void>;
+    isLoading: boolean;
+  };
 
   useEffect(() => {
     fetchPlayers();
-  }, []);
+  }, [fetchPlayers]);
 
-  if (isLoading)
+  if (isLoading) {
     return (
-      <div className="text-orange-600 animate-pulse">LOADING ROSTER...</div>
+      <div className="text-orange-600 animate-pulse font-black uppercase tracking-widest">
+        LOADING ROSTER...
+      </div>
     );
+  }
 
   return (
     <div className="bg-[#111] border border-white/5 rounded-xl overflow-hidden shadow-2xl">
@@ -37,21 +53,23 @@ export default function PlayerList() {
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
-            {players.map((player) => (
+            {players.map((player: Player) => (
               <tr
                 key={player.id}
                 className="hover:bg-white/[0.02] transition-colors group"
               >
                 <td className="px-6 py-4">
                   <span className="text-orange-500 font-black italic uppercase group-hover:text-orange-400">
-                    {player.ign}
+                    {player.ign || "N/A"}
                   </span>
                 </td>
                 <td className="px-6 py-4 text-sm font-medium text-gray-300">
                   {player.name}
                 </td>
                 <td className="px-6 py-4 text-[11px] font-mono text-gray-500 uppercase">
-                  {new Date(player.registration_date).toLocaleDateString()}
+                  {player.registration_date
+                    ? new Date(player.registration_date).toLocaleDateString()
+                    : "PENDING"}
                 </td>
                 <td className="px-6 py-4 text-right">
                   <span className="inline-block w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
